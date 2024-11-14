@@ -1,0 +1,7 @@
+.galleryImage {
+  display: block;
+  height: 30vh;
+  object-fit: cover;
+
+  border-radius: 20px;
+}

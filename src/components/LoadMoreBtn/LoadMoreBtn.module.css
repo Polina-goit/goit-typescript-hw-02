@@ -1,0 +1,24 @@
+.btn {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.btnLoader {
+  display: block;
+  border-radius: 8px;
+  background-color: #031f83;
+  border: transparent;
+  color: #fff;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 1.5;
+  letter-spacing: 0.04em;
+  transition: background-color 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  padding: 8px 25px;
+}
+
+.btnLoader:hover,
+.btnLoader:focus {
+  background-color: #0639e1;
+}
