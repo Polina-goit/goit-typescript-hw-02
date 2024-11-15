@@ -14,20 +14,16 @@ import ErrorMessage from "./ErrorMessage/ErrorMessage";
 import ImageModal from "./ImageModal/ImageModal";
 
 function App() {
-  const [images, setImages] = useState([]); 
-  const [page, setPage] = useState(1); 
-  const [totalPages, setTotalPages] = useState(1); 
-  const [search, setSearch] = useState(""); 
-  const [error, setError] = useState(false);
-  const [loading, setLoading] = useState(false); 
-  const [loadingMore, setLoadingMore] = useState(false); 
-  const [isSearching, setIsSearching] = useState(false); 
+  const [images, setImages] = useState([]);
+  const [page, setPage] = useState(1);
+  const [totalPages, setTotalPages] = useState(1);
+  const [search, setSearch] = useState("");
+  const [errorMessage, setErrorMessage] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [loadingMore, setLoadingMore] = useState(false);
+  const [isSearching, setIsSearching] = useState(false);
   const [selectedImage, setSelectedImage] = useState(null);
-  const [modalIsOpen, setModalIsOpen] = useState(false); 
-
-  useEffect(() => {
-    Modal.setAppElement("#root");
-  }, []);
+  const [modalIsOpen, setModalIsOpen] = useState(false);
 
   const handleSearch = async (searchQuery) => {
     try {
@@ -40,21 +36,21 @@ function App() {
       setTotalPages(dataImg.total_pages);
       setImages(dataImg.results);
 
-      if (searchQuery.trim() === "") {
+      if (searchQuery === "") {
         toast.error("The search field cannot be empty!");
         return;
       } else if (!dataImg.total) {
         toast(
           "Sorry, we have not found the photos for your request. Try to write it differently.",
           {
-            duration: 1000,
+            duration: 2000,
           }
         );
       } else {
         toast.success(`We found ${dataImg.total} pictures`);
       }
     } catch {
-      setError(true);
+      setErrorMessage(false);
     } finally {
       setLoading(false);
       setIsSearching(false);
@@ -70,8 +66,8 @@ function App() {
         return [...prevImages, ...dataImages.results];
       });
       setPage(nextPage);
-    } catch (error) {
-      setError(true);
+    } catch (errorMessage) {
+      setErrorMessage(true);
     } finally {
       setLoadingMore(false);
     }
@@ -98,7 +94,7 @@ function App() {
         }}
       />
       {loading && <Loader />}
-      {error && <ErrorMessage />}
+      {errorMessage && <ErrorMessage />}
       <ImageGallery imageList={images} openModal={openModal} />
       {!loadingMore && !isSearching && (
         <LoadMoreBtn onClick={handleLoadMore} isVisible={isVisible} />

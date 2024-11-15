@@ -10,11 +10,9 @@ export const getImages = async (searchImg, pageNumber) => {
         per_page: 10,
         client_id: ACCESS_KEY,
     }
-    try {
+    
         const respons = await axios.get(`search/photos/?${new URLSearchParams(params).toString()}`);
         return respons.data;
-    }
-    catch (error) {
-        console.log(error.message);
-    }
+    
+   
 }
