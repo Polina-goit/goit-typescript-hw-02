@@ -36,7 +36,7 @@ function App() {
       setTotalPages(dataImg.total_pages);
       setImages(dataImg.results);
 
-      if (searchQuery === "") {
+      if (searchQuery.trim() === "") {
         toast.error("The search field cannot be empty!");
         return;
       } else if (!dataImg.total) {
@@ -51,6 +51,7 @@ function App() {
       }
     } catch {
       setErrorMessage(false);
+      toast.error("The search field cannot be empty!");
     } finally {
       setLoading(false);
       setIsSearching(false);
@@ -67,7 +68,7 @@ function App() {
       });
       setPage(nextPage);
     } catch (errorMessage) {
-      setErrorMessage(true);
+      setErrorMessage(false);
     } finally {
       setLoadingMore(false);
     }
