@@ -36,10 +36,7 @@ function App() {
       setTotalPages(dataImg.total_pages);
       setImages(dataImg.results);
 
-      if (searchQuery.trim() === "") {
-        toast.error("The search field cannot be empty!");
-        return;
-      } else if (!dataImg.total) {
+      if (!dataImg.total) {
         toast(
           "Sorry, we have not found the photos for your request. Try to write it differently.",
           {
@@ -68,7 +65,7 @@ function App() {
       });
       setPage(nextPage);
     } catch (errorMessage) {
-      setErrorMessage(false);
+      setErrorMessage(true);
     } finally {
       setLoadingMore(false);
     }
@@ -77,7 +74,11 @@ function App() {
   const isVisible = () => {
     return totalPages !== 0 && totalPages !== page && !loadingMore;
   };
-
+  useEffect(() => {
+    if (selectedImage) {
+      setModalIsOpen(true);
+    }
+  }, [selectedImage]);
   const openModal = (image) => {
     setSelectedImage(image);
     setModalIsOpen(true);
