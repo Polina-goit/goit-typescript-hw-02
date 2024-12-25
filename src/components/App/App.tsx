@@ -12,20 +12,28 @@ import LoadMoreBtn from "../LoadMoreBtn/LoadMoreBtn";
 import LoaderMore from "../Loader/LoadMore";
 import ErrorMessage from "../ErrorMessage/ErrorMessage";
 import ImageModal from "../ImageModal/ImageModal";
+import { Image } from "../App/App.types";
+
+interface ImageData {
+  total_pages: number;
+  total: number;
+  results: Image[];
+};
+
 
 function App() {
-  const [images, setImages] = useState([]);
-  const [page, setPage] = useState(1);
-  const [totalPages, setTotalPages] = useState(1);
-  const [search, setSearch] = useState("");
-  const [errorMessage, setErrorMessage] = useState(false);
-  const [loading, setLoading] = useState(false);
-  const [loadingMore, setLoadingMore] = useState(false);
+   const [images, setImages] = useState<Image[]>([]);
+  const [page, setPage] = useState<number>(1);
+  const [totalPages, setTotalPages] = useState<number>(1);
+  const [search, setSearch] = useState<string>("");
+  const [errorMessage, setErrorMessage] = useState<boolean>(false);
+  const [loading, setLoading] = useState<boolean>(false);
+  const [loadingMore, setLoadingMore] = useState<boolean>(false);
 
-  const [selectedImage, setSelectedImage] = useState(null);
-  const [modalIsOpen, setModalIsOpen] = useState(false);
+  const [selectedImage, setSelectedImage] = useState < Image | null > (null);
+  const [modalIsOpen, setModalIsOpen] = useState<boolean>(false);
 
-  const handleSearch = async (searchQuery) => {
+  const handleSearch = async (searchQuery: string) :Promise<void> => {
     setImages([]);
     setPage(1);
     setSearch(searchQuery);
@@ -42,9 +50,9 @@ function App() {
         setLoading(true);
         setErrorMessage(false);
 
-        const dataImages = await getImages(search, page);
-
-        if (!dataImages.total) {
+        const dataImages: ImageData | undefined = await getImages(search, page);
+        console.log(dataImages);
+        if (!dataImages) {
           toast(
             "Sorry, we have not found the photos for your request. Try to write it differently.",
             {
