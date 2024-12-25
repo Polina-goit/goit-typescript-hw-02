@@ -1,6 +1,11 @@
 import css from "./LoadMoreBtn.module.css";
 
-const LoadMoreBtn = ({ onClick, isVisible }) => {
+type Props = {
+  onClick: () => void;
+  isVisible: () => boolean;
+};
+
+const LoadMoreBtn = ({ onClick, isVisible }:Props) => {
   return (
     <div className={css.btn}>
       {isVisible() && (

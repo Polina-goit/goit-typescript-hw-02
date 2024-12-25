@@ -1,11 +1,13 @@
+import { Image } from "../App/App.types";
 import css from "./ImageCard.module.css";
 
+type Props = {imageItem: Image}
 const ImageCard = ({
   imageItem: {
     alt_description,
     urls: { small },
   },
-}) => {
+}: Props) => {
   return (
     <div>
       <img

@@ -1,7 +1,12 @@
+import { Image } from "../App/App.types";
 import ImageCard from "../ImageCard/ImageCard";
 import css from "./ImageGallery.module.css";
 
-const ImageGallery = ({ imageList, openModal }) => {
+type Props = {
+  imageList: Image[];
+  openModal: (image: Image) => void;
+}
+const ImageGallery = ({ imageList, openModal }: Props) => {
   return (
     <section className={css.containerGallery}>
       {imageList.length > 0 && (

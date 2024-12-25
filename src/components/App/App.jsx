@@ -1,17 +1,17 @@
-import { getImages } from "../images-api";
+import { getImages } from "../../images-api";
 import { useEffect, useState } from "react";
 // import Modal from "react-modal";
 import "modern-normalize";
 import toast, { Toaster } from "react-hot-toast";
-import css from "../components/App.module.css";
+import css from "../App/App.module.css";
 
-import SearchBar from "./SearchBar/SearchBar";
-import Loader from "./Loader/Loader";
-import ImageGallery from "./ImageGallery/ImageGallery";
-import LoadMoreBtn from "./LoadMoreBtn/LoadMoreBtn";
-import LoaderMore from "./Loader/LoadMore";
-import ErrorMessage from "./ErrorMessage/ErrorMessage";
-import ImageModal from "./ImageModal/ImageModal";
+import SearchBar from "../SearchBar/SearchBar";
+import Loader from "../Loader/Loader";
+import ImageGallery from "../ImageGallery/ImageGallery";
+import LoadMoreBtn from "../LoadMoreBtn/LoadMoreBtn";
+import LoaderMore from "../Loader/LoadMore";
+import ErrorMessage from "../ErrorMessage/ErrorMessage";
+import ImageModal from "../ImageModal/ImageModal";
 
 function App() {
   const [images, setImages] = useState([]);

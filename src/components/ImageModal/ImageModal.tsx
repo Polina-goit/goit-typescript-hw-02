@@ -2,10 +2,17 @@ import Modal from "react-modal";
 import { RiCloseLine } from "react-icons/ri";
 import { format } from "date-fns";
 import css from "./ImageModal.module.css";
+import { Image } from "../App/App.types";
 Modal.setAppElement("#root");
 
-const ImageModal = ({ isOpen, onCloseModal, image }) => {
-  const formatDate = (dateString) => {
+type Props = {
+  isOpen: boolean;
+  image: Image | null;
+  onCloseModal: () => void;
+}
+
+const ImageModal = ({ isOpen, onCloseModal, image }:Props) => {
+  const formatDate = <T extends string> (dateString:T): string => {
     return format(new Date(dateString), " dd MMMM  yyyy");
   };
   return (
