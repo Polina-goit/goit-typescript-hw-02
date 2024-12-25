@@ -83,7 +83,7 @@ function App() {
       setModalIsOpen(true);
     }
   }, [selectedImage]);
-  const openModal = (image) => {
+  const openModal = (image: Image): void  => {
     setSelectedImage(image);
     setModalIsOpen(true);
   };
