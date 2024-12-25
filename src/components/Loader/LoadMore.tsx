@@ -5,10 +5,10 @@ const LoaderMore = () => {
   return (
     <div className={css.container}>
       <InfinitySpin
-        visible={true}
+      //  visible={true}
         width="200"
         color="#21059f"
-        ariaLabel="infinity-spin-loading"
+        // ariaLabel="infinity-spin-loading"
       />
     </div>
   );
