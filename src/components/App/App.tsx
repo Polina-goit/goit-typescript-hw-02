@@ -50,7 +50,7 @@ function App() {
         setLoading(true);
         setErrorMessage(false);
 
-        const dataImages: ImageData | undefined = await getImages(search, page);
+        const dataImages = await getImages<ImageData>(search, page);
         console.log(dataImages);
         if (!dataImages) {
           toast(
